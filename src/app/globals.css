@@ -1,0 +1,296 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 215 62% 35%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 62% 35%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 62% 35%;
+    --primary: 215 62% 35%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 215 62% 35%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 357 66% 42%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 357 66% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 357 66% 42%;
+    --chart-1: 357 66% 42%;
+    --chart-2: 215 62% 35%;
+    --chart-3: 215 40% 50%;
+    --chart-4: 357 50% 60%;
+    --chart-5: 215 20% 70%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 220 40% 5%;
+    --foreground: 0 0% 98%;
+    --card: 220 40% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 40% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 215 62% 35%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 215 60% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 215 60% 15%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 357 66% 42%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 357 66% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 60% 15%;
+    --input: 215 60% 15%;
+    --ring: 357 66% 42%;
+    --chart-1: 357 66% 42%;
+    --chart-2: 0 0% 98%;
+    --chart-3: 0 0% 80%;
+    --chart-4: 357 50% 60%;
+    --chart-5: 0 0% 60%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-footer-navy {
+    background-color: hsl(215 62% 11%);
+  }
+
+  .flip-card {
+    perspective: 1000px;
+  }
+  .flip-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .flip-card-front,
+  .flip-card-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-pan-map {
+    animation: pan-map 40s ease-in-out infinite alternate;
+  }
+  @keyframes pan-map {
+    from {
+      object-position: 0% 50%;
+    }
+    to {
+      object-position: 100% 50%;
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 7s linear infinite;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .btn-animated-border {
+    @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+    @apply bg-transparent text-primary border-2 border-red-500;
+  }
+  .btn-animated-border > * {
+    @apply relative z-10;
+  }
+  .btn-animated-border:hover > * {
+    @apply text-accent-foreground;
+  }
+  .btn-animated-border::before {
+    content: '';
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply w-0 h-0 bg-red-500 rounded-full transition-all duration-500 ease-in-out;
+  }
+  .btn-animated-border:hover::before {
+    @apply w-[225%] h-[500%];
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .header-separator {
+    @apply h-6 w-px bg-black/20;
+  }
+  
+  header[data-scrolled='true'] {
+      @apply shadow-lg;
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+  .icon-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px 3px var(--glow-color);
+  }
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+  .icon-btn > svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon-btn-phone {
+    background: #204f92;
+    --glow-color: #204f92;
+    --focus-color: #204f92;
+  }
+
+  .icon-btn-email {
+    background: #b5222b;
+    --glow-color: #b5222b;
+    --focus-color: #b5222b;
+  }
+
+}
+
+/* Leaflet and Map Styles */
+.leaflet-container {
+  background-color: hsl(var(--secondary));
+  cursor: grab;
+}
+.leaflet-container:active {
+  cursor: grabbing;
+}
+
+.pulsing-icon {
+  width: 24px;
+  height: 24px;
+  background-color: hsl(var(--primary) / 0.8);
+  border: 3px solid hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary));
+  animation: pulse 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.leaflet-marker-icon:hover .pulsing-icon {
+    animation-play-state: paused;
+    transform: scale(1.2);
+    background-color: hsl(var(--primary));
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+.leaflet-tooltip {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  backdrop-filter: blur(5px);
+}
+
+.leaflet-tooltip-top:before {
+  border-top-color: hsl(var(--border)) !important;
+}
+
+.glassmorphic-controls {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 8px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.glassmorphic-controls button {
+  background-color: transparent !important;
+  color: hsl(var(--foreground)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  transition: all 0.2s ease-in-out !important;
+  border: none !important;
+}
+
+.glassmorphic-controls button:hover {
+  background-color: hsl(var(--accent) / 0.3) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  transform: scale(1.1);
+}
+
+    
